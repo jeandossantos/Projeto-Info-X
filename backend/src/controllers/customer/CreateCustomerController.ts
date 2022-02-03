@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 
-import { ICustomer } from "../interfaces/ICustomer";
-import { CreateCustomerService } from "../services/customer/CreateCustomerService";
+import { ICustomer } from "../../interfaces/ICustomer";
+import { CreateCustomerService } from "../../services/customer/CreateCustomerService";
 
 export class CreateCustomerController {
     async handle(req: Request, res: Response) {
