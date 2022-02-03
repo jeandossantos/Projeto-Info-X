@@ -1,5 +1,5 @@
 import { getCustomRepository } from "typeorm";
-import { CustomerRepository } from "../repositories/CustomerRepository";
+import { CustomerRepository } from "../../repositories/CustomerRepository";
 
 export class DeleteCustomerService {
     async execute(id: number) {
