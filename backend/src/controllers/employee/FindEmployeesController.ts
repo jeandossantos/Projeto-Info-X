@@ -5,7 +5,7 @@ export class FindEmployeesController {
     async handle(req: Request, res: Response) {
         const service = new FindEmployeesService();
 
-        const employees = service.execute();
+        const employees = await service.execute();
 
         return res.json(employees);
     }

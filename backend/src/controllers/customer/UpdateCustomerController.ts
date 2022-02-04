@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { ICustomer } from "../interfaces/ICustomer";
-import { UpdateCustomerService } from "../services/UpdateCustomerService";
+import { ICustomer } from "../../interfaces/ICustomer";
+import { UpdateCustomerService } from "../../services/customer/UpdateCustomerService";
 
 export class UpdateCustomerController {
     async handle(req: Request, res: Response) {

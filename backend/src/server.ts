@@ -14,14 +14,20 @@ app.use(cors());
 app.use(express.json());
 app.use(routes);
 
-app.use((error: CustomException | Error, req: Request, res: Response, next: NextFunction) => {
-    console.error(error.stack);
+app.use(
+    (
+        error: CustomException | Error,
+        req: Request,
+        res: Response,
+        next: NextFunction
+    ) => {
 
-    if (error instanceof CustomException) {
-        return res.status(error.code).send(error.message);
-    }
+        if (error instanceof CustomException) {
+            return res.status(error.code).send(error.message);
+        }
 
-    return res.status(500).send('Internal Error.');
-});
+        console.error(error.message);
+        return res.status(500).send('Internal Error.');
+    });
 
 app.listen(port, () => console.log(`Backend is running on port ${port}...`));

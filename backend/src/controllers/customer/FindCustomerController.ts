@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { FindCustomerService } from "../services/FindCustomerService";
+import { FindCustomerService } from "../../services/customer/FindCustomerService";
 
 export class FindCustomerController {
     async handle(req: Request, res: Response) {
