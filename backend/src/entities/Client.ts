@@ -1,7 +1,8 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Order } from "./Order";
 
-@Entity('employees')
-export class Employee {
+@Entity('clients')
+export class Client {
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -12,16 +13,13 @@ export class Employee {
     email: string;
 
     @Column()
-    password: string;
-
-    @Column()
     cpf: string;
 
     @Column()
     whatsapp: string;
 
-    @Column()
-    admin: boolean;
+    @OneToMany(() => Order, order => order)
+    orders: Order[];
 
     @CreateDateColumn({ name: 'created_at' })
     createdAt: Date;

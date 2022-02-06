@@ -1,10 +1,10 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
-export class CustomTable1643898710979 implements MigrationInterface {
+export class ClientTable1643898710979 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(new Table({
-            name: 'customers',
+            name: 'client',
             columns: [
                 {
                     name: 'id',
@@ -32,13 +32,18 @@ export class CustomTable1643898710979 implements MigrationInterface {
                 {
                     name: 'whatsapp',
                     type: 'varchar'
-                }
+                },
+                {
+                    name: 'created_at',
+                    type: 'timestamp',
+                    default: 'now()'
+                },
             ]
         }))
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('customers');
+        await queryRunner.dropTable('client');
     }
 
 }

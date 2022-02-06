@@ -1,13 +1,14 @@
 import { Router } from "express";
 
-import { CreateCustomerController } from "./controllers/customer/CreateCustomerController";
-import { DeleteCustomerController } from "./controllers/customer/DeleteCustomerController";
-import { FindCustomerController } from "./controllers/customer/FindCustomerController";
-import { UpdateCustomerController } from "./controllers/customer/UpdateCustomerController";
+import { CreateClientController } from "./controllers/client/CreateClientController";
+import { DeleteClientController } from "./controllers/client/DeleteClientController";
+import { FindClientsController } from "./controllers/client/FindClientsController";
+import { UpdateClientController } from "./controllers/client/UpdateClientController";
 import { CreateEmployeeController } from "./controllers/employee/CreateEmployeeController";
 import { DeleteEmployeeController } from "./controllers/employee/DeleteEmployeeService";
 import { FindEmployeesController } from "./controllers/employee/FindEmployeesController";
 import { UpdateEmployeeController } from "./controllers/employee/UpdateEmployeeController";
+import { CreateOrderController } from "./controllers/order/CreateOrderController";
 import { CreateSituacionController } from "./controllers/situacion/CreateSituacionController";
 import { DeleteSituacionController } from "./controllers/situacion/DeleteSituacionService";
 import { FindSituacionController } from "./controllers/situacion/FindSituationsController";
@@ -16,10 +17,10 @@ import { UpdateSituacionController } from "./controllers/situacion/UpdateSituaci
 const routes = Router();
 
 //customers routes
-routes.post('/customers', new CreateCustomerController().handle);
-routes.put('/customers/:id', new UpdateCustomerController().handle);
-routes.get('/customers', new FindCustomerController().handle);
-routes.delete('/customers/:id', new DeleteCustomerController().handle);
+routes.post('/customers', new CreateClientController().handle);
+routes.put('/customers/:id', new UpdateClientController().handle);
+routes.get('/customers', new FindClientsController().handle);
+routes.delete('/customers/:id', new DeleteClientController().handle);
 
 //employees routes
 routes.post('/employees', new CreateEmployeeController().handle);
@@ -32,5 +33,8 @@ routes.post('/situacions', new CreateSituacionController().handle);
 routes.get('/situacions', new FindSituacionController().handle);
 routes.put('/situacions/:id', new UpdateSituacionController().handle);
 routes.delete('/situacions/:id', new DeleteSituacionController().handle);
+
+// orders routes
+routes.post('/orders', new CreateOrderController().handle);
 
 export { routes }

@@ -2,6 +2,7 @@ import 'reflect-metadata';
 import 'express-async-errors';
 import express, { NextFunction, Request, Response } from 'express';
 import cors from 'cors';
+import helmet from 'helmet';
 
 import { routes } from './routes';
 import './database/connection';
@@ -11,9 +12,9 @@ const port = 3001;
 
 const app = express();
 app.use(cors());
+app.use(helmet());
 app.use(express.json());
 app.use(routes);
-
 app.use(
     (
         error: CustomException | Error,

@@ -41,7 +41,12 @@ export class EmployeesTable1643982608793 implements MigrationInterface {
                     name: 'admin',
                     type: 'boolean',
                     default: false
-                }
+                },
+                {
+                    name: 'created_at',
+                    type: 'timestamp',
+                    default: 'now()'
+                },
             ]
         }))
     }
