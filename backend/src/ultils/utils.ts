@@ -5,4 +5,4 @@ export const encryptPassword = (password: string, numberRounds: number) => {
     return hashSync(password, salt);
 }
 
-export const generateUniqueId = () => crypto.randomBytes(6).toString('hex');
+export const generateUniqueId = () => crypto.randomBytes(4).toString('hex');

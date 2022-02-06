@@ -9,6 +9,8 @@ import { DeleteEmployeeController } from "./controllers/employee/DeleteEmployeeS
 import { FindEmployeesController } from "./controllers/employee/FindEmployeesController";
 import { UpdateEmployeeController } from "./controllers/employee/UpdateEmployeeController";
 import { CreateOrderController } from "./controllers/order/CreateOrderController";
+import { FindOrdersController } from "./controllers/order/FindOrdersController";
+import { UpdateOrderController } from "./controllers/order/UpdateOrderController";
 import { CreateSituacionController } from "./controllers/situacion/CreateSituacionController";
 import { DeleteSituacionController } from "./controllers/situacion/DeleteSituacionService";
 import { FindSituacionController } from "./controllers/situacion/FindSituationsController";
@@ -17,10 +19,10 @@ import { UpdateSituacionController } from "./controllers/situacion/UpdateSituaci
 const routes = Router();
 
 //customers routes
-routes.post('/customers', new CreateClientController().handle);
-routes.put('/customers/:id', new UpdateClientController().handle);
-routes.get('/customers', new FindClientsController().handle);
-routes.delete('/customers/:id', new DeleteClientController().handle);
+routes.post('/clients', new CreateClientController().handle);
+routes.put('/clients/:id', new UpdateClientController().handle);
+routes.get('/clients', new FindClientsController().handle);
+routes.delete('/clients/:id', new DeleteClientController().handle);
 
 //employees routes
 routes.post('/employees', new CreateEmployeeController().handle);
@@ -36,5 +38,7 @@ routes.delete('/situacions/:id', new DeleteSituacionController().handle);
 
 // orders routes
 routes.post('/orders', new CreateOrderController().handle);
+routes.get('/orders', new FindOrdersController().handle);
+routes.put('/orders/:id', new UpdateOrderController().handle);
 
 export { routes }
