@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { FindSituacionService } from "../../services/situation/FindSituacionsService";
+import { FindSituationsService } from "../../services/situation/FindSituationsService";
 
-export class FindSituacionController {
+export class FindSituationsController {
     async handle(req: Request, res: Response) {
-        const service = new FindSituacionService();
+        const service = new FindSituationsService();
 
         const situacions = await service.execute();
 

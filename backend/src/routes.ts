@@ -11,10 +11,10 @@ import { UpdateEmployeeController } from "./controllers/employee/UpdateEmployeeC
 import { CreateOrderController } from "./controllers/order/CreateOrderController";
 import { FindOrdersController } from "./controllers/order/FindOrdersController";
 import { UpdateOrderController } from "./controllers/order/UpdateOrderController";
-import { CreateSituacionController } from "./controllers/situacion/CreateSituacionController";
-import { DeleteSituacionController } from "./controllers/situacion/DeleteSituacionService";
-import { FindSituacionController } from "./controllers/situacion/FindSituationsController";
-import { UpdateSituacionController } from "./controllers/situacion/UpdateSituacionController";
+import { CreateSituacionController } from "./controllers/situation/CreateSituacionController";
+import { DeleteSituationController } from "./controllers/situation/DeleteSituacionService";
+import { FindSituationsController } from "./controllers/situation/FindSituationsController";
+import { UpdateSituationController } from "./controllers/situation/UpdateSituationController";
 
 const routes = Router();
 
@@ -31,10 +31,10 @@ routes.get('/employees', new FindEmployeesController().handle);
 routes.delete('/employees/:id', new DeleteEmployeeController().handle);
 
 //situations routes
-routes.post('/situacions', new CreateSituacionController().handle);
-routes.get('/situacions', new FindSituacionController().handle);
-routes.put('/situacions/:id', new UpdateSituacionController().handle);
-routes.delete('/situacions/:id', new DeleteSituacionController().handle);
+routes.post('/situation', new CreateSituacionController().handle);
+routes.get('/situation', new FindSituationsController().handle);
+routes.put('/situation/:id', new UpdateSituationController().handle);
+routes.delete('/situation/:id', new DeleteSituationController().handle);
 
 // orders routes
 routes.post('/orders', new CreateOrderController().handle);

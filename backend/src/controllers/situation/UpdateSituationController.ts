@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
-import { UpdateSituacionService } from "../../services/situation/UpdateSituacionService";
+import { UpdateSituationService } from "../../services/situation/UpdateSituationService";
 
-export class UpdateSituacionController {
+export class UpdateSituationController {
     async handle(req: Request, res: Response) {
         const { name } = req.body;
         const id = Number(req.params.id);
 
-        const service = new UpdateSituacionService();
+        const service = new UpdateSituationService();
 
         await service.execute({ id, name });
 

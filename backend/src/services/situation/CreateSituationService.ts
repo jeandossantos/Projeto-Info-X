@@ -1,9 +1,9 @@
 import { getCustomRepository } from "typeorm";
-import { SituacionRepository } from "../../repositories/SituacionRepository";
+import { SituationRepository } from "../../repositories/SituationRepository";
 
-export class CreateSituacionService {
+export class CreateSituationService {
     async execute(name: string) {
-        const repository = getCustomRepository(SituacionRepository);
+        const repository = getCustomRepository(SituationRepository);
 
         const situation = repository.create({ name });
 

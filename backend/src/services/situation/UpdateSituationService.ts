@@ -1,12 +1,12 @@
 import { getCustomRepository } from "typeorm";
 
-import { SituacionRepository } from "../../repositories/SituacionRepository";
+import { SituationRepository } from "../../repositories/SituationRepository";
 import { ISituacion } from "../../interfaces/ISituacion";
 
 
-export class UpdateSituacionService {
+export class UpdateSituationService {
     async execute({ id, name }: ISituacion) {
-        const repository = getCustomRepository(SituacionRepository);
+        const repository = getCustomRepository(SituationRepository);
 
         await repository.update(id, { name });
     }

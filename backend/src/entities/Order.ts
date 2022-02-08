@@ -2,14 +2,16 @@ import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToOne, Prim
 
 import { generateUniqueId } from "../ultils/utils";
 import { Employee } from "./Employee";
-import { Situacion } from "./Situation";
+import { Situation } from "./Situation";
 import { Client } from "./Client";
+import { Exclude } from "class-transformer";
 
 @Entity('Orders')
 export class Order {
     @PrimaryColumn()
     id: string;
 
+    @Exclude()
     @Column()
     client_id: number;
 
@@ -17,6 +19,7 @@ export class Order {
     @ManyToOne(() => Client)
     client: Client;
 
+    @Exclude()
     @Column()
     employee_id: number;
 
@@ -36,11 +39,13 @@ export class Order {
     @Column()
     price: number;
 
+    @Exclude()
     @Column()
     situation_id: number;
 
+    @OneToOne(() => Situation)
     @JoinColumn({ name: 'situation_id' })
-    situation: Situacion;
+    situation: Situation;
 
     @CreateDateColumn({ name: 'created_at' })
     createdAt: Date;

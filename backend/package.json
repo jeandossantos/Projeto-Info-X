@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "class-transformer": "^0.5.1",
     "cors": "^2.8.5",
     "cpf-cnpj-validator": "^1.0.3",
     "express": "^4.17.2",
