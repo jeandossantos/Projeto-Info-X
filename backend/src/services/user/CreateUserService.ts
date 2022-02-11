@@ -1,14 +1,14 @@
 import { getCustomRepository } from "typeorm";
-import { IEmployee } from "../../interfaces/IEmployee";
-import { EmployeeeRepository } from "../../repositories/EmployeeRepository";
-import { existsOrError } from "../../ultils/validation";
+import { IUser } from "../../interfaces/IUser";
+import { UserRepository } from "../../repositories/UserRepository";
+import { existsOrError, notExistsOrError } from "../../ultils/validation";
 import { cpf as cpfFunction } from 'cpf-cnpj-validator';
 import { encryptPassword } from "../../ultils/utils";
 import { CustomException } from "../../exceptions/CustomException";
 
-export class CreateEmployeeService {
-    async execute({ name, email, password, cpf, whatsapp, admin = false }: IEmployee) {
-        const repository = getCustomRepository(EmployeeeRepository);
+export class CreateUserService {
+    async execute({ name, email, password, cpf, whatsapp, admin = false }: IUser) {
+        const repository = getCustomRepository(UserRepository);
 
         existsOrError(name, 'Nome é necessário(a)!');
         existsOrError(email, 'E-mail é necessário(a)!');
@@ -17,9 +17,13 @@ export class CreateEmployeeService {
 
         if (!cpfFunction.isValid(cpf)) throw new CustomException('CPF inválido');
 
+        const userFromDB = await repository.findOne({ email });
+
+        notExistsOrError(userFromDB, 'Usuário já existente.');
+
         const newPassword = encryptPassword(password, 10);
 
-        const employee = repository.create({
+        const user = repository.create({
             name,
             email,
             password: newPassword,
@@ -28,6 +32,6 @@ export class CreateEmployeeService {
             admin
         });
 
-        await repository.save(employee);
+        await repository.save(user);
     }
 }

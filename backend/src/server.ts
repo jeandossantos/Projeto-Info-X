@@ -3,10 +3,13 @@ import 'express-async-errors';
 import express, { NextFunction, Request, Response } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
+import { config } from 'dotenv';
 
 import { routes } from './routes';
 import './database/connection';
 import { CustomException } from './exceptions/CustomException';
+
+config();
 
 const port = 3001;
 

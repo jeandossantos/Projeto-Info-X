@@ -1,15 +1,15 @@
 import { getCustomRepository } from "typeorm";
 import { CustomException } from "../../exceptions/CustomException";
 
-import { IEmployee } from "../../interfaces/IEmployee";
-import { EmployeeeRepository } from "../../repositories/EmployeeRepository";
+import { IUser } from "../../interfaces/IUser";
+import { UserRepository } from "../../repositories/UserRepository";
 import { existsOrError } from "../../ultils/validation";
 import { cpf as cpfFunction } from "cpf-cnpj-validator";
 import { encryptPassword } from "../../ultils/utils";
 
-export class UpdateEmployeeService {
-    async execute({ id, name, email, password, cpf, whatsapp, admin = false }: IEmployee) {
-        const repository = getCustomRepository(EmployeeeRepository);
+export class UpdateUserService {
+    async execute({ id, name, email, password, cpf, whatsapp, admin = false }: IUser) {
+        const repository = getCustomRepository(UserRepository);
 
         existsOrError(name, 'Nome é necessário(a)!');
         existsOrError(email, 'E-mail é necessário(a)!');
@@ -20,7 +20,7 @@ export class UpdateEmployeeService {
 
         const newPassword = encryptPassword(password, 10);
 
-        const employee = repository.create({
+        const user = repository.create({
             id,
             name,
             email,
@@ -30,6 +30,6 @@ export class UpdateEmployeeService {
             admin
         });
 
-        await repository.save(employee);
+        await repository.save(user);
     }
 }

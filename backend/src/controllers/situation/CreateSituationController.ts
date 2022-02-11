@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { CreateSituationService } from "../../services/situation/CreateSituationService";
 
-export class CreateSituacionController {
+export class CreateSituationController {
     async handle(req: Request, res: Response) {
         const { name } = req.body;
 

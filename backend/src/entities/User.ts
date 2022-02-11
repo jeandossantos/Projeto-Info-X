@@ -1,8 +1,8 @@
 import { Exclude } from "class-transformer";
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity('employees')
-export class Employee {
+@Entity('users')
+export class User {
     @PrimaryGeneratedColumn()
     id: number;
 

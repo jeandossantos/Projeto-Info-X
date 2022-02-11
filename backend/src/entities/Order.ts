@@ -1,7 +1,7 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryColumn, UpdateDateColumn } from "typeorm";
 
 import { generateUniqueId } from "../ultils/utils";
-import { Employee } from "./Employee";
+import { User } from "./User";
 import { Situation } from "./Situation";
 import { Client } from "./Client";
 import { Exclude } from "class-transformer";
@@ -21,11 +21,11 @@ export class Order {
 
     @Exclude()
     @Column()
-    employee_id: number;
+    user_id: number;
 
-    @OneToOne(() => Employee)
-    @JoinColumn({ name: 'employee_id' })
-    employee: Employee;
+    @OneToOne(() => User)
+    @JoinColumn({ name: 'user_id' })
+    user: User;
 
     @Column()
     equipment: string;

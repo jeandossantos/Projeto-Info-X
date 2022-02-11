@@ -1,13 +1,13 @@
 import { Request, Response } from "express";
-import { IEmployee } from "../../interfaces/IEmployee";
-import { UpdateEmployeeService } from "../../services/employee/UpdateEmployeeService";
+import { IUser } from "../../interfaces/IUser";
+import { UpdateUserService } from "../../services/user/UpdateUserService";
 
-export class UpdateEmployeeController {
+export class UpdateUserController {
     async handle(req: Request, res: Response) {
-        const { name, email, password, cpf, whatsapp, admin } = req.body as IEmployee;
+        const { name, email, password, cpf, whatsapp, admin } = req.body as IUser;
         const id = Number(req.params.id);
 
-        const service = new UpdateEmployeeService();
+        const service = new UpdateUserService();
 
         await service.execute({
             id,

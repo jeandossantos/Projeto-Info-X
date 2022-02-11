@@ -16,7 +16,7 @@ export class OrderTable1644158965338 implements MigrationInterface {
                     type: 'integer',
                 },
                 {
-                    name: 'employee_id',
+                    name: 'user_id',
                     type: 'integer'
                 },
                 {
