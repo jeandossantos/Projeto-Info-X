@@ -1,0 +1,15 @@
+.home {
+    height: 100%;
+}
+
+.home .cards {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 60px;
+    justify-content: center;
+    align-content: space-between;
+}
+
+.home .cards a {
+    text-decoration: none;
+}

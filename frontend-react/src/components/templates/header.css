@@ -1,0 +1,25 @@
+.header {
+    grid-area: header;
+    background: #283048;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #859398, #283048);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #859398, #283048); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-style: italic;
+}
+
+.header .title {
+    color: #fff;
+    font-weight: 500;
+    font-size: 30px;
+}
+
+
+.header .title .x {
+    font-size: 40px;
+    color: #fff;
+    font-weight: 700;
+}
