@@ -1,66 +1,74 @@
-import './clientForm.css';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-export default function () {
+import { changeName, changeEmail, changeCPF, changeWHATSAPP, add, clear, update } from '../../store/client/clientActions';
+
+const ClientForm = function (props) {
+    const { id, name, email, cpf, whatsapp } = props;
+    const { changeName, changeEmail, changeCPF, changeWHATSAPP, add, clear, update } = props;
+
     return (
         <div className="container">
-            <div role='form' className="row">
+            <div role='form' className="row client-form">
                 <div className="col-md-6">
                     <label className="form-label">Nome:</label>
-                    <input type="text" className='form-control' />
+                    <input type="text" value={name} onChange={changeName}
+                        placeholder="Informe o Nome" className='form-control' />
                 </div>
                 <div className="col-md-6">
                     <label className="form-label">Email:</label>
-                    <input type="text" className='form-control' />
+                    <input type="text" value={email} onChange={changeEmail}
+                        placeholder="Informe o E-mail" className='form-control' />
                 </div>
                 <div className="col-md-4">
                     <label className="form-label">CPF:</label>
-                    <input type="text" className='form-control' />
+                    <input type="text" value={cpf} onChange={changeCPF}
+                        placeholder="Informe o CPF" className='form-control' />
                 </div>
                 <div className="col-md-3">
                     <label className="form-label">Whatsapp:</label>
-                    <input type="text" className='form-control' />
+                    <input type="text" value={whatsapp} onChange={changeWHATSAPP}
+                        placeholder="Informe o número Whatsapp" className='form-control' />
                 </div>
                 <div className="col-md-12 mt-3">
-                    <button type="button" className="me-2 btn btn-primary">Salvar</button>
-                    <button type="button" className="me-2 btn btn-secondary">Cancelar</button>
+                    {
+
+                        !id
+                            ? <button type="button" onClick={() => add(name, email, cpf, whatsapp)}
+                                className="me-2 btn btn-primary">Salvar</button>
+                            : <button type="button" onClick={() => update(id, name, email, cpf, whatsapp)}
+                                className="me-2 btn btn-warning">Atualizar</button>
+                    }
+                    <button type="button" onClick={clear} className="me-2 btn btn-secondary">Cancelar</button>
                 </div>
             </div>
             <hr />
-            <table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">CPF</th>
-                        <th scope="col">Whatsapp</th>
-                        <th scope="col">Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                        <td>@twitter</td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
 
     )
 }
+
+function mapStateToProps(state) {
+    const { id, name, email, cpf, whatsapp } = state.client;
+    return {
+        id,
+        name,
+        email,
+        cpf,
+        whatsapp
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+        changeName,
+        changeEmail,
+        changeCPF,
+        changeWHATSAPP,
+        add,
+        clear,
+        update
+    }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ClientForm);

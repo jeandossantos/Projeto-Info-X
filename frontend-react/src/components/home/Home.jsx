@@ -1,15 +1,19 @@
 import './home.css';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faUser } from '@fortawesome/free-solid-svg-icons';
 import { faUsers } from '@fortawesome/free-solid-svg-icons';
 import { faCodeMerge } from '@fortawesome/free-solid-svg-icons';
 import { faClipboardList } from '@fortawesome/free-solid-svg-icons';
-
-import Card from '../templates/Card';
 import { Link } from 'react-router-dom';
+
+import PageTitle from '../templates/pageTitle';
+import Card from '../templates/Card';
+
 
 export default function () {
     return (
         <div className="home">
+            <PageTitle title="Bem vindo(a), Jean!" icon={faHome}
+                subTitle="Comece a Navegador por aqui." />
             <div className="cards">
                 <Link to='/clients'>
                     <Card icon={faUser} title="Clientes" />

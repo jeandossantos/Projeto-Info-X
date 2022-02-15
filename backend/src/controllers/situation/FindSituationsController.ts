@@ -4,8 +4,8 @@ import { FindSituationsService } from "../../services/situation/FindSituationsSe
 export class FindSituationsController {
     async handle(req: Request, res: Response) {
         const service = new FindSituationsService();
-
-        const situacions = await service.execute();
+        const page = req.query.page;
+        const situacions = await service.execute(Number(page));
 
         res.json(situacions);
     }

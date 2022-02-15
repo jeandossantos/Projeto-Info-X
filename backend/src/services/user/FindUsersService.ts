@@ -3,11 +3,19 @@ import { getCustomRepository } from "typeorm";
 import { UserRepository } from "../../repositories/UserRepository";
 
 export class FindUsersService {
-    async execute() {
+    async execute(page: number = 1) {
         const repository = getCustomRepository(UserRepository);
 
-        const users = await repository.find();
+        const limit = 4;
 
-        return instanceToPlain(users);
+        const [users, count] = await repository.findAndCount({
+            skip: page * limit - limit,
+            take: 4,
+            order: {
+                id: 'DESC'
+            }
+        });
+
+        return instanceToPlain({ users, limit, count });
     }
 }

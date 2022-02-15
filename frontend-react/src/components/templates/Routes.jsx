@@ -8,7 +8,7 @@ import Order from '../order/Order';
 export default function () {
     return (
         <Routes>
-            <Route path='/home' element={<Home />} />
+            <Route path='/' element={<Home />} />
             <Route path='/clients' element={<Client />} />
             <Route path='/users' element={<User />} />
             <Route path='/situations' element={<Situation />} />

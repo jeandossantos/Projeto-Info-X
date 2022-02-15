@@ -23,7 +23,7 @@ const routes = Router();
 routes.post('/signin', new AuthenticateUserController().handle);
 
 //customers routes
-routes.post('/clients', ensureAuthenticated, new CreateClientController().handle);
+routes.post('/clients', new CreateClientController().handle);
 routes.put('/clients/:id', new UpdateClientController().handle);
 routes.get('/clients', new FindClientsController().handle);
 routes.delete('/clients/:id', new DeleteClientController().handle);

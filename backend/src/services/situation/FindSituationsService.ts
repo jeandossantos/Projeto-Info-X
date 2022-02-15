@@ -2,10 +2,19 @@ import { getCustomRepository } from "typeorm";
 import { SituationRepository } from "../../repositories/SituationRepository";
 
 export class FindSituationsService {
-    async execute() {
+    async execute(page: number = 1) {
         const repository = getCustomRepository(SituationRepository);
-        const situacions = await repository.find();
 
-        return situacions;
+        const limit = 4;
+
+        const [situacions, count] = await repository.findAndCount({
+            skip: page * limit - limit,
+            take: 4,
+            order: {
+                id: 'DESC'
+            }
+        });
+
+        return { situacions, limit, count };
     }
 }
