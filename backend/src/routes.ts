@@ -17,6 +17,7 @@ import { FindSituationsController } from "./controllers/situation/FindSituations
 import { UpdateSituationController } from "./controllers/situation/UpdateSituationController";
 import { AuthenticateUserController } from "./controllers/user/AuthenticateUSerController";
 import { ensureAuthenticated } from "./middlewares/EnsureAuthenticated";
+import { FindClientByCPFController } from "./controllers/client/FindClientByCPFController";
 
 const routes = Router();
 
@@ -27,6 +28,7 @@ routes.post('/clients', new CreateClientController().handle);
 routes.put('/clients/:id', new UpdateClientController().handle);
 routes.get('/clients', new FindClientsController().handle);
 routes.delete('/clients/:id', new DeleteClientController().handle);
+routes.get('/clients/:cpf', new FindClientByCPFController().handle);
 
 //users routes
 routes.post('/users', new CreateUserController().handle);
@@ -35,10 +37,10 @@ routes.get('/users', new FindUsersController().handle);
 routes.delete('/users/:id', new DeleteUserController().handle);
 
 //situations routes
-routes.post('/situation', new CreateSituationController().handle);
-routes.get('/situation', new FindSituationsController().handle);
-routes.put('/situation/:id', new UpdateSituationController().handle);
-routes.delete('/situation/:id', new DeleteSituationController().handle);
+routes.post('/situations', new CreateSituationController().handle);
+routes.get('/situations', new FindSituationsController().handle);
+routes.put('/situations/:id', new UpdateSituationController().handle);
+routes.delete('/situations/:id', new DeleteSituationController().handle);
 
 // orders routes
 routes.post('/orders', new CreateOrderController().handle);

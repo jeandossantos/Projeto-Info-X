@@ -5,7 +5,7 @@ import { OrderRepository } from "../../repositories/OrderRepository";
 export class CreateOrderService {
     async execute({
         client_id,
-        employee_id,
+        user_id,
         situation_id,
         equipment,
         difect,
@@ -16,7 +16,7 @@ export class CreateOrderService {
 
         const order = repository.create({
             client_id,
-            employee_id,
+            user_id,
             situation_id,
             equipment,
             difect,

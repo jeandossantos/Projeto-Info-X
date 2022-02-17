@@ -4,29 +4,25 @@ import { connect } from "react-redux"
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import IconButton from '../templates/IconButtom';
-import Pagination from "react-js-pagination";
-import { remove, load } from "../../store/client/clientActions";
+import { remove, load } from "../../store/situation/situationActions";
 
 import { bindActionCreators } from "redux";
 
-const ClientTable = function (props) {
+const SituationTable = function (props) {
+
 
     function renderRows() {
         const list = props.list || [];
         const { remove, load } = props;
-
-        return list.map(user => {
+        return list.map(situation => {
             return (
-                <tr key={user.id} >
-                    <th scope="row">{user.id}</th>
-                    <td>{user.name}</td>
-                    <td>{user.email}</td>
-                    <td>{user.cpf}</td>
-                    <td>{user.whatsapp}</td>
+                <tr key={situation.id} >
+                    <th scope="row">{situation.id}</th>
+                    <td>{situation.name}</td>
                     <td>
-                        <IconButton onClick={() => load(user)} icon={faPencil}
+                        <IconButton onClick={() => load(situation)} icon={faPencil}
                             btnStyle='warning me-2' />
-                        <IconButton onClick={() => remove(user.id)} icon={faTrash}
+                        <IconButton onClick={() => remove(situation.id)} icon={faTrash}
                             btnStyle='danger' />
                     </td>
                 </tr>
@@ -40,9 +36,6 @@ const ClientTable = function (props) {
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Nome</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">CPF</th>
-                        <th scope="col">Whatsapp</th>
                         <th scope="col">Ações</th>
                     </tr>
                 </thead>
@@ -57,7 +50,7 @@ const ClientTable = function (props) {
 
 
 function mapStateToProps(state) {
-    const { list } = state.client;
+    const { list } = state.situation;
     return {
         list
     }
@@ -67,4 +60,4 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({ remove, load }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ClientTable);
+export default connect(mapStateToProps, mapDispatchToProps)(SituationTable);

@@ -34,17 +34,32 @@ export function changeWHATSAPP(e) {
         payload: e.target.value
     }
 }
-export function add(name, email, cpf, whatsapp) {
+
+export function changePassword(e) {
+    return {
+        type: 'PASSWORD_CHANGED',
+        payload: e.target.value
+    }
+}
+
+export function changeConfirmPassword(e) {
+    return {
+        type: 'COMFIRM_PASSWORD_CHANGED',
+        payload: e.target.value
+    }
+}
+
+export function add(name, email, cpf, whatsapp, password, confirmPassword) {
     return dispatch => {
-        api.post('/clients', { name, email, cpf, whatsapp })
+        api.post('/users', { name, email, cpf, whatsapp, password, confirmPassword })
             .then(() => dispatch(search()))
             .then(() => dispatch(clear()))
     }
 }
 
-export function update(id, name, email, cpf, whatsapp) {
+export function update(id, name, email, cpf, whatsapp, password, confirmPassword) {
     return dispatch => {
-        api.put(`/clients/${id}`, { name, email, cpf, whatsapp })
+        api.put(`/users/${id}`, { name, email, cpf, whatsapp, password, confirmPassword })
             .then(() => dispatch(search()))
             .then(() => dispatch(clear()))
     }
@@ -52,7 +67,7 @@ export function update(id, name, email, cpf, whatsapp) {
 
 export function remove(id) {
     return dispatch => {
-        api.delete(`/clients/${id}`)
+        api.delete(`/users/${id}`)
             .then(() => dispatch(search()))
     }
 }
@@ -71,14 +86,14 @@ export function clear() {
 export function search(page = 1) {
 
     return dispatch => {
-        api.get(`/clients?page=${page}`)
+        api.get(`/users?page=${page}`)
             .then(resp => dispatch({ type: 'LIST_CHANGED', payload: resp.data }))
     }
 }
 
 export function searchByCPF(cpf) {
     return dispacth => {
-        api.get(`/clients/${cpf}`)
+        api.get(`/users/${cpf}`)
             .then(resp => dispacth(load(resp.data)));
     }
 }

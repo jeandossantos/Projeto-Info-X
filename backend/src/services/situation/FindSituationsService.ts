@@ -7,7 +7,7 @@ export class FindSituationsService {
 
         const limit = 4;
 
-        const [situacions, count] = await repository.findAndCount({
+        const [situations, count] = await repository.findAndCount({
             skip: page * limit - limit,
             take: 4,
             order: {
@@ -15,6 +15,6 @@ export class FindSituationsService {
             }
         });
 
-        return { situacions, limit, count };
+        return { situations, limit, count };
     }
 }

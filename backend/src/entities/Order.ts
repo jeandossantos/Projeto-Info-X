@@ -6,7 +6,7 @@ import { Situation } from "./Situation";
 import { Client } from "./Client";
 import { Exclude } from "class-transformer";
 
-@Entity('Orders')
+@Entity('orders')
 export class Order {
     @PrimaryColumn()
     id: string;

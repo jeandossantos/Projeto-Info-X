@@ -6,7 +6,7 @@ export class CreateOrderController {
     async handle(req: Request, res: Response) {
         const {
             client_id,
-            employee_id,
+            user_id,
             situation_id,
             equipment,
             difect,
@@ -16,7 +16,7 @@ export class CreateOrderController {
 
         await new CreateOrderService().execute({
             client_id,
-            employee_id,
+            user_id,
             situation_id,
             equipment,
             difect,

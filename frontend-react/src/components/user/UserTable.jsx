@@ -4,17 +4,16 @@ import { connect } from "react-redux"
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import IconButton from '../templates/IconButtom';
-import Pagination from "react-js-pagination";
-import { remove, load } from "../../store/client/clientActions";
+import { remove, load } from "../../store/user/userActions";
 
 import { bindActionCreators } from "redux";
 
-const ClientTable = function (props) {
+const UserTable = function (props) {
+
 
     function renderRows() {
         const list = props.list || [];
         const { remove, load } = props;
-
         return list.map(user => {
             return (
                 <tr key={user.id} >
@@ -57,7 +56,7 @@ const ClientTable = function (props) {
 
 
 function mapStateToProps(state) {
-    const { list } = state.client;
+    const { list } = state.user;
     return {
         list
     }
@@ -67,4 +66,4 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({ remove, load }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ClientTable);
+export default connect(mapStateToProps, mapDispatchToProps)(UserTable);

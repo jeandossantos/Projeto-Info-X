@@ -1,0 +1,4 @@
+.situation ul.pagination {
+    display: flex;
+    justify-content: center;
+}

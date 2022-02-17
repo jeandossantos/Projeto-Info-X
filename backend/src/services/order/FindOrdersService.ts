@@ -8,7 +8,7 @@ export class FindOrdersService {
         const limit = 4;
 
         const [orders, count] = await repository.findAndCount({
-            relations: ['situation', 'client', 'employee'],
+            relations: ['situation', 'client', 'user'],
             skip: page * limit - limit,
             take: 4,
             order: {

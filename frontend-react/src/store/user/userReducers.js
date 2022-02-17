@@ -5,6 +5,8 @@ const initialState = {
     email: '',
     cpf: '',
     whatsapp: '',
+    password: '',
+    confirmPassword: '',
     list: [],
     page: 1,
     limit: 0,
@@ -23,10 +25,14 @@ export default function (state = initialState, action) {
             return { ...state, cpf: payload }
         case 'WHATSAPP_CHANGED':
             return { ...state, whatsapp: payload }
+        case 'PASSWORD_CHANGED':
+            return { ...state, password: payload }
+        case 'COMFIRM_PASSWORD_CHANGED':
+            return { ...state, confirmPassword: payload }
         case 'PAGE_CHANGED':
             return { ...state, page: payload }
         case 'LIST_CHANGED':
-            return { ...state, list: payload.clients, count: payload.count, limit: payload.limit }
+            return { ...state, list: payload.users, count: payload.count, limit: payload.limit }
         case 'CLEAR':
             return { ...initialState, list: state.list }
         case 'LOAD':

@@ -1,0 +1,4 @@
+.user ul.pagination {
+    display: flex;
+    justify-content: center;
+}
