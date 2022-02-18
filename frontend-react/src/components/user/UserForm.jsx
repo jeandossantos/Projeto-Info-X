@@ -71,6 +71,24 @@ const UserForm = function (props) {
                     <input type="password" value={confirmPassword} onChange={changeConfirmPassword}
                         placeholder="Informe o número Whatsapp" className='form-control' />
                 </div>
+                <div className="col-md-12 mt-2">
+                    <label className="form-label me-3">Administrador:</label>
+                    <div class="form-check form-check-inline">
+                        <input className="form-check-input" type="radio" name="exampleRadios"
+                            id="exampleRadios1" value="option1" checked={true} />
+                        <label className="form-check-label" html-for="exampleRadios1">
+                            Sim
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input className="form-check-input" type="radio" name="exampleRadios"
+                            id="exampleRadios2" value="option2" />
+                        <label className="form-check-label" html-for="exampleRadios2">
+                            Não
+                        </label>
+                    </div>
+
+                </div>
 
                 <div className="col-md-12 mt-3">
                     {

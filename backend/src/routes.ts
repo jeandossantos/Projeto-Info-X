@@ -18,6 +18,8 @@ import { UpdateSituationController } from "./controllers/situation/UpdateSituati
 import { AuthenticateUserController } from "./controllers/user/AuthenticateUSerController";
 import { ensureAuthenticated } from "./middlewares/EnsureAuthenticated";
 import { FindClientByCPFController } from "./controllers/client/FindClientByCPFController";
+import { FindAllSituationsController } from "./controllers/situation/FindAllSituationsController";
+import { FindOrderByIdController } from "./controllers/order/FindOrderByIdController";
 
 const routes = Router();
 
@@ -39,6 +41,7 @@ routes.delete('/users/:id', new DeleteUserController().handle);
 //situations routes
 routes.post('/situations', new CreateSituationController().handle);
 routes.get('/situations', new FindSituationsController().handle);
+routes.get('/situations/all', new FindAllSituationsController().handle);
 routes.put('/situations/:id', new UpdateSituationController().handle);
 routes.delete('/situations/:id', new DeleteSituationController().handle);
 
@@ -46,5 +49,6 @@ routes.delete('/situations/:id', new DeleteSituationController().handle);
 routes.post('/orders', new CreateOrderController().handle);
 routes.get('/orders', new FindOrdersController().handle);
 routes.put('/orders/:id', new UpdateOrderController().handle);
+routes.get('/orders/:id', new FindOrderByIdController().handle);
 
 export { routes }

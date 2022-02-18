@@ -17,6 +17,11 @@
     font-size: 30px;
 }
 
+.header .title a {
+    text-decoration: none;
+    color: #fff;
+}
+
 
 .header .title .x {
     font-size: 40px;
