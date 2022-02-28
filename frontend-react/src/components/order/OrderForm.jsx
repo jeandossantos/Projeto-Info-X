@@ -2,6 +2,7 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import IconButton from '../templates/IconButtom';
+import CurrencyInput from 'react-currency-input-field';
 
 import {
     changeID,
@@ -17,6 +18,8 @@ import {
     searchClientByCpf,
     changeClient
 } from '../../store/order/orderActions';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 const OrderForm = function (props) {
@@ -45,24 +48,76 @@ const OrderForm = function (props) {
 
     return (
         <div className="container">
+
             <div role='form' className="row">
                 <div className="col-sm-8 col-md-2 me-0 pe-0">
                     <label className="form-label">Código:</label>
-                    <input type="text" readOnly={id} value={id} onChange={changeID}
+                    <input type="text" readOnly value={id} onChange={changeID}
                         placeholder="Informe o E-mail" className='form-control' />
                 </div>
                 <div className="col-sm-4 col-md-1 mt-2 ms-0 ps-0 d-flex justify-content-center align-self-end">
-                    <IconButton btnStyle="dark" onClick={() => searchByID(id)}
-                        icon={faMagnifyingGlass} />
+                    <button type="button" className="btn btn-dark" data-bs-toggle="modal" data-bs-target="#orderModal">
+                        <FontAwesomeIcon icon={faMagnifyingGlass} />
+                    </button>
+                    <div className="modal fade" id="orderModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div className="modal-dialog">
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <h5 className="modal-title" id="exampleModalLabel">Buscar Ordem de Serviço</h5>
+                                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div className="modal-body">
+                                    <div className="row">
+                                        <div className="col-12">
+                                            <label className="form-label">Código:</label>
+                                            <input type="text" value={id} onChange={changeID}
+                                                placeholder="Informe o código da Ordem..." className='form-control' />
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div className="modal-footer">
+                                    <button type="button" onClick={() => searchByID(id)} className="btn btn-primary">Pesquisar</button>
+                                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
                 <div className="col-sm-8 col-md-2 me-0 pe-0">
                     <label className="form-label">CPF do cliente:</label>
-                    <input type="text" value={client.cpf || ""} onChange={changeClient}
+                    <input type="text" readOnly value={client.cpf} onChange={changeClient}
                         placeholder="Informe o cliente" className='form-control' />
                 </div>
                 <div className="col-sm-4 col-md-1 mt-2 ms-0 ps-0 d-flex justify-content-center align-self-end">
-                    <IconButton btnStyle="dark" onClick={() => searchClientByCpf(client.cpf)}
-                        icon={faMagnifyingGlass} />
+                    <button type="button" className="btn btn-dark" data-bs-toggle="modal" data-bs-target="#clientModal">
+                        <FontAwesomeIcon icon={faMagnifyingGlass} />
+                    </button>
+                    <div className="modal fade" id="clientModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div className="modal-dialog">
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <h5 className="modal-title" id="exampleModalLabel">Buscar Cliente</h5>
+                                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div className="modal-body">
+                                    <div className="row">
+                                        <div className="col-12">
+                                            <label className="form-label">CPF:</label>
+                                            <input type="text" value={client.cpf} onChange={changeClient}
+                                                placeholder="Informe o cpf do cliente..." className='form-control' />
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div className="modal-footer">
+                                    <button type="button" onClick={() => searchClientByCpf(client.cpf)} className="btn btn-primary">Pesquisar</button>
+                                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div className='col-md-6'>
                     <label className="form-label">Nome do Cliente:</label>

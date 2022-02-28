@@ -22,6 +22,11 @@ export class AuthenticateUserService {
             expiresIn: '1d'
         });
 
-        return token;
+        return {
+            id: user.id,
+            name: user.name,
+            admin: user.admin,
+            token
+        };
     }
 }

@@ -28,7 +28,7 @@ routes.post('/signin', new AuthenticateUserController().handle);
 //customers routes
 routes.post('/clients', new CreateClientController().handle);
 routes.put('/clients/:id', new UpdateClientController().handle);
-routes.get('/clients', new FindClientsController().handle);
+routes.get('/clients', ensureAuthenticated, new FindClientsController().handle);
 routes.delete('/clients/:id', new DeleteClientController().handle);
 routes.get('/clients/:cpf', new FindClientByCPFController().handle);
 

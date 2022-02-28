@@ -63,8 +63,10 @@ export function changePage(value) {
     }
 }
 
-export function add(equipment, difect, service, price) {
-    return dispatch => {
+export function add() {
+    return (dispatch, getState) => {
+        const { } = getState().order;
+
         api.post('/orders', { equipment, difect, service, price })
             .then(() => dispatch(search()))
             .then(() => dispatch(clear()))

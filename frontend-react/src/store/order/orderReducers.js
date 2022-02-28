@@ -11,19 +11,19 @@ const initialState = {
     },
     client: {
         id: '',
-        name: "",
-        email: "",
-        cpf: "",
-        whatsapp: "",
-        createdAt: ""
+        name: '',
+        email: '',
+        cpf: '',
+        whatsapp: '',
+        createdAt: ''
     },
     user: {
         id: '',
-        name: "",
-        email: "",
-        cpf: "",
-        whatsapp: "",
-        createdAt: ""
+        name: '',
+        email: '',
+        cpf: '',
+        whatsapp: '',
+        createdAt: ''
     },
     list: [],
     situationList: [],
