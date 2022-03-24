@@ -1,8 +1,8 @@
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import IconButton from '../templates/IconButtom';
-import CurrencyInput from 'react-currency-input-field';
+import NumberFormat from 'react-number-format';
+import './order.css';
 
 import {
     changeID,
@@ -87,8 +87,11 @@ const OrderForm = function (props) {
 
                 <div className="col-sm-8 col-md-2 me-0 pe-0">
                     <label className="form-label">CPF do cliente:</label>
-                    <input type="text" readOnly value={client.cpf} onChange={changeClient}
-                        placeholder="Informe o cliente" className='form-control' />
+                    <NumberFormat readOnly className='form-control' format="###.###.###-##"
+                        value={client.cpf} onChange={changeClient}
+                        placeholder="Informe o cliente" />
+                    {/* <input type="text" readOnly value={client.cpf} onChange={changeClient}
+                        placeholder="Informe o cliente" className='form-control' /> */}
                 </div>
                 <div className="col-sm-4 col-md-1 mt-2 ms-0 ps-0 d-flex justify-content-center align-self-end">
                     <button type="button" className="btn btn-dark" data-bs-toggle="modal" data-bs-target="#clientModal">
@@ -150,8 +153,13 @@ const OrderForm = function (props) {
 
                 <div className="col-sm-8 col-md-2 pe-0 mt-2">
                     <label className="form-label">Preço:</label>
-                    <input type="text" value={price} onChange={changePrice}
-                        placeholder="Informe o Preço" className='form-control' />
+                    <NumberFormat className='form-control' prefix='R$ '
+                        thousandSeparator='.' decimalSeparator=','
+                        decimalScale={2} allowNegative={false}
+                        value={price} onChange={changePrice}
+                        placeholder="Informe o Preço" />
+                    {/* <input type="text" value={price} onChange={changePrice}
+                        placeholder="Informe o Preço" className='form-control' /> */}
                 </div>
                 <div className="col-md-12 mt-3">
                     {

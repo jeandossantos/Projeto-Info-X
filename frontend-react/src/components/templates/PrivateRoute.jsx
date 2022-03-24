@@ -7,7 +7,7 @@ const PrivateRoute = ({ children, logout, isSignedIn }) => {
 
     if (!isSignedIn) {
         logout();
-        return <Navigate to='/signin' />
+        return <Navigate to='/' />
     }
 
     return children;

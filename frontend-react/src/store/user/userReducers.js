@@ -7,6 +7,7 @@ const initialState = {
     whatsapp: '',
     password: '',
     confirmPassword: '',
+    admin: false,
     list: [],
     page: 1,
     limit: 0,
@@ -29,6 +30,8 @@ export default function (state = initialState, action) {
             return { ...state, password: payload }
         case 'COMFIRM_PASSWORD_CHANGED':
             return { ...state, confirmPassword: payload }
+        case 'ADMIN_CHANGED':
+            return { ...state, admin: payload }
         case 'PAGE_CHANGED':
             return { ...state, page: payload }
         case 'LIST_CHANGED':

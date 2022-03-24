@@ -2,6 +2,7 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import IconButton from '../templates/IconButtom';
+import NumberFormat from 'react-number-format';
 
 import {
     changeName,
@@ -10,6 +11,7 @@ import {
     changeWHATSAPP,
     changePassword,
     changeConfirmPassword,
+    changeAdmin,
     add,
     clear,
     update,
@@ -18,13 +20,14 @@ import {
 
 
 const UserForm = function (props) {
-    const { id, name, email, cpf, whatsapp, password, confirmPassword } = props;
+    const { id, name, email, cpf, whatsapp, password, admin, confirmPassword } = props;
     const { changeName,
         changeEmail,
         changeCPF,
         changeWHATSAPP,
         changePassword,
         changeConfirmPassword,
+        changeAdmin,
         add,
         clear,
         update,
@@ -45,47 +48,41 @@ const UserForm = function (props) {
                     <input type="text" value={email} onChange={changeEmail}
                         placeholder="Informe o E-mail" className='form-control' />
                 </div>
-                <div className="col-sm-8 col-md-3 pe-0">
+                <div className="col-sm-8 col-md-3 pe-0 mt-2">
                     <label className="form-label">CPF:</label>
-                    <input type="text" value={cpf} onChange={changeCPF}
-                        placeholder="Informe o CPF" className='form-control' />
+                    <NumberFormat className='form-control' format="###.###.###-##"
+                        value={cpf} onChange={changeCPF} placeholder="Informe o CPF" />
                 </div>
                 <div className="col-sm-4 col-md-1 ms-0 ps-0 d-flex justify-content-center align-self-end">
                     <IconButton btnStyle="dark" onClick={() => searchByCPF(cpf)}
                         icon={faMagnifyingGlass} />
                     <br />
                 </div>
-                <div className="col-md-3">
+                <div className="col-md-3 mt-2">
                     <label className="form-label">Whatsapp:</label>
-                    <input type="text" value={whatsapp} onChange={changeWHATSAPP}
-                        placeholder="Informe o número Whatsapp" className='form-control' />
+                    <NumberFormat className='form-control' format="(##) # ####-####" mask="_"
+                        value={whatsapp} onChange={changeWHATSAPP} placeholder="Informe o Whatsapp" />
+
                 </div>
                 <div></div>
-                <div className="col-md-3 col-sm-6">
+                <div className="col-md-3 col-sm-6 mt-2">
                     <label className="form-label">Senha:</label>
                     <input type="password" value={password} onChange={changePassword}
-                        placeholder="Informe o número Whatsapp" className='form-control' />
+                        placeholder="Informe a Senha" className='form-control' />
                 </div>
-                <div className="col-md-3 col-sm-6">
+                <div className="col-md-3 col-sm-6 mt-2">
                     <label className="form-label">Confirmar Senha:</label>
                     <input type="password" value={confirmPassword} onChange={changeConfirmPassword}
-                        placeholder="Informe o número Whatsapp" className='form-control' />
+                        placeholder="Confirme a Senha" className='form-control' />
                 </div>
-                <div className="col-md-12 mt-2">
-                    <label className="form-label me-3">Administrador:</label>
-                    <div class="form-check form-check-inline">
-                        <input className="form-check-input" type="radio" name="exampleRadios"
-                            id="exampleRadios1" value="option1" checked={true} />
-                        <label className="form-check-label" html-for="exampleRadios1">
-                            Sim
-                        </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input className="form-check-input" type="radio" name="exampleRadios"
-                            id="exampleRadios2" value="option2" />
-                        <label className="form-check-label" html-for="exampleRadios2">
-                            Não
-                        </label>
+                <div className="col-md-12 mt-3" >
+
+                    <div className="form-check form-switch">
+                        <input className="form-check-input"
+                            onChange={changeAdmin} type="checkbox" role="switch" checked={admin}
+                            id="flexSwitchCheckDefault" />
+                        <label className="form-check-label"
+                        >Usuário Administrador?</label>
                     </div>
 
                 </div>
@@ -95,10 +92,10 @@ const UserForm = function (props) {
 
                         !id
                             ? <button type="button"
-                                onClick={() => add(name, email, cpf, whatsapp, password, confirmPassword)}
+                                onClick={() => add(name, email, cpf, whatsapp, password, admin, confirmPassword)}
                                 className="me-2 btn btn-primary">Salvar</button>
                             : <button type="button"
-                                onClick={() => update(id, name, email, cpf, whatsapp, password, confirmPassword)}
+                                onClick={() => update(id, name, email, cpf, whatsapp, password, admin, confirmPassword)}
                                 className="me-2 btn btn-warning">Atualizar</button>
                     }
                     <button type="button" onClick={clear} className="me-2 btn btn-secondary">Cancelar</button>
@@ -111,7 +108,7 @@ const UserForm = function (props) {
 }
 
 function mapStateToProps(state) {
-    const { id, name, email, cpf, whatsapp, password, confirmPassword } = state.user;
+    const { id, name, email, cpf, whatsapp, password, admin, confirmPassword } = state.user;
     return {
         id,
         name,
@@ -119,7 +116,8 @@ function mapStateToProps(state) {
         cpf,
         whatsapp,
         password,
-        confirmPassword
+        confirmPassword,
+        admin
     }
 }
 
@@ -131,6 +129,7 @@ function mapDispatchToProps(dispatch) {
         changeWHATSAPP,
         changePassword,
         changeConfirmPassword,
+        changeAdmin,
         add,
         clear,
         update,

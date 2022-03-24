@@ -22,6 +22,7 @@ const UserTable = function (props) {
                     <td>{user.email}</td>
                     <td>{user.cpf}</td>
                     <td>{user.whatsapp}</td>
+                    <td>{user.admin ? 'Sim' : 'Não'}</td>
                     <td>
                         <IconButton onClick={() => load(user)} icon={faPencil}
                             btnStyle='warning me-2' />

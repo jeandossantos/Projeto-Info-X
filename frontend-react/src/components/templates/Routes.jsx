@@ -13,7 +13,7 @@ export default function () {
 
     return (
         <Routes>
-            <Route path='/signin' element={<Signin />} />
+            <Route path='/' element={<Signin />} />
 
             <Route path='/home' element={
                 <PrivateRoute>

@@ -28,8 +28,6 @@ const OrderTable = function (props) {
                     <td>
                         <IconButton onClick={() => load(order)} icon={faPencil}
                             btnStyle='warning me-2 mb-2' />
-                        <IconButton onClick={() => remove(order.id)} icon={faTrash}
-                            btnStyle='danger me-2 mb-2' />
                     </td>
                 </tr>
             )

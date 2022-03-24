@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import './App.css';
 
 import Content from "./components/templates/Content";

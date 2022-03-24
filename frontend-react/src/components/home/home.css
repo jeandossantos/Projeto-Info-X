@@ -13,3 +13,8 @@
 .home .cards a {
     text-decoration: none;
 }
+
+.home .admin-link {
+    pointer-events: none;
+    opacity: 0.5;
+}

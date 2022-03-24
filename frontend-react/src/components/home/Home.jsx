@@ -4,24 +4,26 @@ import { faUsers } from '@fortawesome/free-solid-svg-icons';
 import { faCodeMerge } from '@fortawesome/free-solid-svg-icons';
 import { faClipboardList } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
-
+import { connect } from 'react-redux';
 import PageTitle from '../templates/pageTitle';
 import Card from '../templates/Card';
 
 
-export default function () {
+const Home = function (props) {
+    const { name, admin } = props;
+
     return (
         <div className="home">
-            <PageTitle title="Bem vindo(a), Jean!" icon={faHome}
-                subTitle="Comece a Navegador por aqui." />
+            <PageTitle title={`Bem-vindo(a), ${name || 'Usuário(a)'}`} icon={faHome}
+                subTitle="Comece a trabalhar por aqui." />
             <div className="cards">
-                <Link to='/clients'>
+                <Link to='/clients' >
                     <Card icon={faUser} title="Clientes" />
                 </Link>
-                <Link to='/users'>
+                <Link to={admin ? `/users` : '#'} className={!admin ? 'admin-link' : ''}>
                     <Card icon={faUsers} title="Usuários" />
                 </Link>
-                <Link to='/situations'>
+                <Link to={admin ? `/situations` : '#'} className={!admin ? 'admin-link' : ''}>
                     <Card icon={faCodeMerge} title="Estados" />
                 </Link>
                 <Link to='/orders'>
@@ -31,3 +33,13 @@ export default function () {
         </div>
     )
 }
+
+function mapStateToProps(state) {
+    const { name, admin } = state.auth.user;
+    return {
+        name,
+        admin
+    }
+}
+
+export default connect(mapStateToProps)(Home);

@@ -49,17 +49,24 @@ export function changeConfirmPassword(e) {
     }
 }
 
-export function add(name, email, cpf, whatsapp, password, confirmPassword) {
+export function changeAdmin(e) {
+    return {
+        type: 'ADMIN_CHANGED',
+        payload: e.target.checked
+    }
+}
+
+export function add(name, email, cpf, whatsapp, password, admin, confirmPassword) {
     return dispatch => {
-        api.post('/users', { name, email, cpf, whatsapp, password, confirmPassword })
+        api.post('/users', { name, email, cpf, whatsapp, password, admin, confirmPassword })
             .then(() => dispatch(search()))
             .then(() => dispatch(clear()))
     }
 }
 
-export function update(id, name, email, cpf, whatsapp, password, confirmPassword) {
+export function update(id, name, email, cpf, whatsapp, password, admin, confirmPassword) {
     return dispatch => {
-        api.put(`/users/${id}`, { name, email, cpf, whatsapp, password, confirmPassword })
+        api.put(`/users/${id}`, { name, email, cpf, whatsapp, password, admin, confirmPassword })
             .then(() => dispatch(search()))
             .then(() => dispatch(clear()))
     }

@@ -31,7 +31,7 @@ class User extends Component {
 
         return (
             <div className="user">
-                <PageTitle title="Usuáros" icon={faUsers}
+                <PageTitle title="Usuários" icon={faUsers}
                     subTitle="Cadastre, Liste, Atualize e Remova usuários nesta página." />
                 <UserForm />
                 <UserTable />

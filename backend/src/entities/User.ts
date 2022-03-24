@@ -23,7 +23,6 @@ export class User {
     whatsapp: string;
 
     @Column()
-    @Exclude()
     admin: boolean;
 
     @CreateDateColumn({ name: 'created_at' })

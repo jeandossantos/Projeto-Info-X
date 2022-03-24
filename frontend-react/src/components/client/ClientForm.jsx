@@ -2,6 +2,7 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import IconButton from '../templates/IconButtom';
+import NumberFormat from 'react-number-format';
 
 import {
     changeName,
@@ -43,8 +44,11 @@ const ClientForm = function (props) {
                 </div>
                 <div className="col-sm-8 col-md-3 pe-0">
                     <label className="form-label">CPF:</label>
-                    <input type="text" value={cpf} onChange={changeCPF}
-                        placeholder="Informe o CPF" className='form-control' />
+                    <NumberFormat className='form-control' format="###.###.###-##"
+                        value={cpf} onChange={changeCPF} placeholder="Informe o CPF" />
+
+                    {/* <input type="text" value={cpf} onChange={changeCPF}
+                        placeholder="Informe o CPF" className='form-control' /> */}
                 </div>
                 <div className="col-sm-4 col-md-1 ms-0 ps-0 d-flex justify-content-center align-self-end">
                     <IconButton btnStyle="dark" onClick={() => searchByCPF(cpf)}
@@ -53,8 +57,11 @@ const ClientForm = function (props) {
                 </div>
                 <div className="col-md-3">
                     <label className="form-label">Whatsapp:</label>
-                    <input type="text" value={whatsapp} onChange={changeWHATSAPP}
-                        placeholder="Informe o número Whatsapp" className='form-control' />
+                    <NumberFormat className='form-control' format="(##) # ####-####" mask="_"
+                        value={whatsapp} onChange={changeWHATSAPP} placeholder="Informe o Whatsapp" />
+
+                    {/* <input type="text" value={whatsapp} onChange={changeWHATSAPP}
+                        placeholder="Informe o número Whatsapp" className='form-control' /> */}
                 </div>
                 <div className="col-md-12 mt-3">
                     {
