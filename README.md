@@ -1,49 +1,43 @@
-# Projeto Info-X
+# Projeto Info X
 
 [![NPM](https://img.shields.io/npm/l/react)](https://github.com/TXTDBR/gerenciador_de_tarefas/blob/master/LICENSE) 
 
 ## Sobre o projeto
 
-Gerenciador de Tarefas é uma aplicação full stack web.
+Sistema de gestão de orderns de serviço para uma assistência técnica de microcomputadores e notebooks e periféricos ficticia.
 
-A aplicação é uma ferramenta simples de criação e controle de tarefas.
-
-### **_OBS:_** _Backend refeito com Typescript e TypeORM_ [Aqui](https://github.com/jeandossantos/tarefas_backend_ts)
 
 ## Layout da Aplicação
-![Web 1](https://github.com/TXTDBR/assets/blob/master/gerenciador%20de%20tarefas/signin.png)
-![Web 2](https://github.com/TXTDBR/assets/blob/master/gerenciador%20de%20tarefas/signup.png)
-![Web 3](https://github.com/TXTDBR/assets/blob/master/gerenciador%20de%20tarefas/home.png)
-![Web 4](https://github.com/TXTDBR/assets/blob/master/gerenciador%20de%20tarefas/tarefa2.png)
-![Web 5](https://github.com/TXTDBR/assets/blob/master/gerenciador%20de%20tarefas/perfil.png)
-
-## Diagrama Entidade Relacionamento
-![Diagrama Entidade Relacionamento](https://github.com/TXTDBR/assets/blob/master/gerenciador%20de%20tarefas/uml-tasks.png)
+![Web 1](https://github.com/jeandossantos/assets/blob/master/projeto%20infoX/home.png)
+![Web 2](https://github.com/jeandossantos/assets/blob/master/projeto%20infoX/clients.png)
+![Web 3](https://github.com/jeandossantos/assets/blob/master/projeto%20infoX/users.png)
+![Web 4](https://github.com/jeandossantos/assets/blob/master/projeto%20infoX/orders.jpg)
 
 ## Tecnologias utilizadas
-## Back end
-- Javascript
+
+### Back end
+- Typescript
 - Node.js
 - Express
-- PostgreSQL
-- Knex.js
+- SQLite3
+- TypeORM
 - Autenticação com Passport usando estratégia JWT
-## Front end
-- Vue JS
-- Vuex
-- Vue Router
+- 
+### Front end
+- React JS
+- React-Router
+- React Redux
 - HTML / CSS / JS
 - Bootstrap
-- vue-chartjs
 
 ## Como executar o projeto
 
 ### Back end
-Pré-requisitos: Node JS 14.15.4
+Pré-requisitos: Node JS 16
 
 ```bash
 # clonar repositório
-git clone https://github.com/TXTDBR/gerenciador_de_tarefas.git
+git clone https://github.com/jeandossantos/Projeto-Info-X.git
 
 # entrar na pasta do projeto back end
 cd backend
@@ -57,17 +51,15 @@ npm start
 Pré-requisitos: npm 
 
 ```bash
-# clonar repositório
-git clone https://github.com/TXTDBR/gerenciador_de_tarefas.git
 
 # entrar na pasta do projeto front end web
-cd frontend
+cd frontend-react
 
 # instalar dependências
 npm install
 
 # executar o projeto
-npm run serve
+npm run dev
 ```
 
 ## Autor
