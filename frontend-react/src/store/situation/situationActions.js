@@ -1,4 +1,5 @@
 import { api } from '../../config/axiosConfig.js';
+import { toast } from '../../config/toastify';
 
 export function changeName(e) {
     return {
@@ -17,8 +18,10 @@ export function changePage(value) {
 export function add(name) {
     return dispatch => {
         api.post('/situations', { name })
+            .then(() => toast('Sucesso!', 'success'))
             .then(() => dispatch(search()))
             .then(() => dispatch(clear()))
+            .catch(e => toast(e.request.response, 'error'))
     }
 }
 
@@ -26,14 +29,17 @@ export function update(id, name) {
 
     return dispatch => {
         api.put(`/situations/${id}`, { name })
+            .then(() => toast('Sucesso!', 'success'))
             .then(() => dispatch(search()))
             .then(() => dispatch(clear()))
+            .catch(e => toast(e.request.response, 'error'))
     }
 }
 
 export function remove(id) {
     return dispatch => {
         api.delete(`/situations/${id}`)
+            .then(() => toast('Sucesso!', 'success'))
             .then(() => dispatch(search()))
     }
 }

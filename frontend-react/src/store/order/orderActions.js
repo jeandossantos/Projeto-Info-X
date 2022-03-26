@@ -1,4 +1,5 @@
 import { api } from '../../config/axiosConfig';
+import { toast } from '../../config/toastify';
 
 export function changeID(e) {
     return {
@@ -36,6 +37,7 @@ export function changePrice(e) {
 }
 
 export function changeSituation(e) {
+
     return {
         type: 'SITUATION_CHANGED',
         payload: e.target.value
@@ -49,6 +51,12 @@ export function changeClient(e) {
     }
 }
 
+export function changeCPFClient(e) {
+    return {
+        type: 'CPF_CLIENT_CHANGED',
+        payload: e.target.value
+    }
+}
 export function getSituationList() {
     return dispacth => {
         api.get('/situations/all')
@@ -65,25 +73,47 @@ export function changePage(value) {
 
 export function add() {
     return (dispatch, getState) => {
-        const { } = getState().order;
+        const { equipment, difect, service, price, situation, client } = getState().order;
 
-        api.post('/orders', { equipment, difect, service, price })
+        api.post('/orders', {
+            equipment,
+            difect,
+            service,
+            price,
+            situation_id: situation.id,
+            client_id: client.id,
+        })
+            .then(() => toast('Sucesso!', 'success'))
             .then(() => dispatch(search()))
             .then(() => dispatch(clear()))
+            .catch(e => toast(e.request.response, 'error'))
     }
 }
 
-export function update(id, equipment, difect, service, price) {
-    return dispatch => {
-        api.put(`/orders/${id}`, { equipment, difect, service, price })
+export function update() {
+    return (dispatch, getState) => {
+        const { id, equipment, difect, service, price, situation, client } = getState().order;
+
+        api.put(`/orders/${id}`, {
+            id,
+            equipment,
+            difect,
+            service,
+            price,
+            situation_id: situation.id,
+            client_id: client.id
+        })
+            .then(() => toast('Sucesso!', 'success'))
             .then(() => dispatch(search()))
             .then(() => dispatch(clear()))
+            .catch(e => toast(e.request.response, 'error'))
     }
 }
 
 export function remove(id) {
     return dispatch => {
         api.delete(`/orders/${id}`)
+            .then(() => toast('Sucesso!', 'success'))
             .then(() => dispatch(search()))
     }
 }
@@ -114,8 +144,18 @@ export function searchByID(id) {
 }
 
 export function searchClientByCpf(cpf) {
+
     return dispacth => {
-        api.get(`/clients/${cpf}`)
-            .then(resp => dispacth({ type: 'CLIENT_CHANGED', payload: resp.data }));
+        if (cpf) {
+            api.get(`/clients/${cpf}`)
+                .then(resp => {
+                    if (resp.data) {
+                        toast('Cliente encontrado', 'success');
+                        dispacth({ type: 'CLIENT_CHANGED', payload: resp.data })
+                    } else {
+                        toast('Cliente não encontrado', 'warning');
+                    }
+                });
+        }
     }
 }

@@ -60,7 +60,7 @@ const UserForm = function (props) {
                 </div>
                 <div className="col-md-3 mt-2">
                     <label className="form-label">Whatsapp:</label>
-                    <NumberFormat className='form-control' format="(##) # ####-####" mask="_"
+                    <NumberFormat className='form-control' format="(##) #####-####" mask="_"
                         value={whatsapp} onChange={changeWHATSAPP} placeholder="Informe o Whatsapp" />
 
                 </div>

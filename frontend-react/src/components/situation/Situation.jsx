@@ -32,7 +32,7 @@ class Situation extends React.Component {
 
         return (
             <div className="situation">
-                <PageTitle title="Situações/Estados" icon={faCodeMerge}
+                <PageTitle title="Situações/Status" icon={faCodeMerge}
                     subTitle="Cadastre, Liste, Atualize e Remova os estados para as orders de serviço nesta página." />
                 <SituationForm />
                 <SituationTable />

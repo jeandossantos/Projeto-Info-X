@@ -1,4 +1,5 @@
 import { api } from '../../config/axiosConfig';
+import { toast } from '../../config/toastify';
 
 export function changeName(e) {
     return {
@@ -37,22 +38,27 @@ export function changeWHATSAPP(e) {
 export function add(name, email, cpf, whatsapp) {
     return dispatch => {
         api.post('/clients', { name, email, cpf, whatsapp })
+            .then(() => toast('Sucesso!', 'success'))
             .then(() => dispatch(search()))
             .then(() => dispatch(clear()))
+            .catch(e => toast(e.request.response, 'error'))
     }
 }
 
 export function update(id, name, email, cpf, whatsapp) {
     return dispatch => {
         api.put(`/clients/${id}`, { name, email, cpf, whatsapp })
+            .then(() => toast('Sucesso!', 'success'))
             .then(() => dispatch(search()))
             .then(() => dispatch(clear()))
+            .catch(e => toast(e.request.response, 'error'))
     }
 }
 
 export function remove(id) {
     return dispatch => {
         api.delete(`/clients/${id}`)
+            .then(() => toast('Sucesso!', 'success'))
             .then(() => dispatch(search()))
     }
 }

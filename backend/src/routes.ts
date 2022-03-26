@@ -20,6 +20,7 @@ import { ensureAuthenticated } from "./middlewares/EnsureAuthenticated";
 import { FindClientByCPFController } from "./controllers/client/FindClientByCPFController";
 import { FindAllSituationsController } from "./controllers/situation/FindAllSituationsController";
 import { FindOrderByIdController } from "./controllers/order/FindOrderByIdController";
+import { ensureAdmin } from "./middlewares/EnsureAdmin";
 
 const routes = Router();
 
@@ -27,10 +28,10 @@ routes.post('/signin', new AuthenticateUserController().handle);
 
 //customers routes
 routes.post('/clients', new CreateClientController().handle);
-routes.put('/clients/:id', new UpdateClientController().handle);
 routes.get('/clients', ensureAuthenticated, new FindClientsController().handle);
-routes.delete('/clients/:id', new DeleteClientController().handle);
+routes.put('/clients/:id', new UpdateClientController().handle);
 routes.get('/clients/:cpf', new FindClientByCPFController().handle);
+routes.delete('/clients/:id', new DeleteClientController().handle);
 
 //users routes
 routes.post('/users', new CreateUserController().handle);
@@ -46,7 +47,7 @@ routes.put('/situations/:id', new UpdateSituationController().handle);
 routes.delete('/situations/:id', new DeleteSituationController().handle);
 
 // orders routes
-routes.post('/orders', new CreateOrderController().handle);
+routes.post('/orders', ensureAuthenticated, ensureAdmin, new CreateOrderController().handle);
 routes.get('/orders', new FindOrdersController().handle);
 routes.put('/orders/:id', new UpdateOrderController().handle);
 routes.get('/orders/:id', new FindOrderByIdController().handle);

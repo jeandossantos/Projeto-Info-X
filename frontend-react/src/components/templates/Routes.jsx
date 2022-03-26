@@ -26,12 +26,12 @@ export default function () {
                 </PrivateRoute>
             } />
             <Route path='/users' element={
-                <PrivateRoute>
+                <PrivateRoute role='admin'>
                     <User />
                 </PrivateRoute>
             } />
             <Route path='/situations' element={
-                <PrivateRoute>
+                <PrivateRoute role='admin'>
                     <Situation />
                 </PrivateRoute>
             } />

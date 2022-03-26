@@ -16,10 +16,12 @@ import {
     update,
     searchByID,
     searchClientByCpf,
-    changeClient
+    changeClient,
+    changeCPFClient
 } from '../../store/order/orderActions';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useState } from 'react';
 
 
 const OrderForm = function (props) {
@@ -36,7 +38,8 @@ const OrderForm = function (props) {
         update,
         searchClientByCpf,
         searchByID,
-        changeClient } = props;
+        changeClient,
+        changeCPFClient } = props;
 
     function renderSelectionOptions() {
         return situationList.map(s => {
@@ -45,6 +48,11 @@ const OrderForm = function (props) {
             )
         })
     }
+    const [findCpf, setFindCpf] = useState('');
+
+    function handleFindCPFField(e) {
+        setFindCpf(e.target.value)
+    }
 
     return (
         <div className="container">
@@ -52,11 +60,11 @@ const OrderForm = function (props) {
             <div role='form' className="row">
                 <div className="col-sm-8 col-md-2 me-0 pe-0">
                     <label className="form-label">Código:</label>
-                    <input type="text" readOnly value={id} onChange={changeID}
-                        placeholder="Informe o E-mail" className='form-control' />
+                    <input type="text" disabled={true} value={id} onChange={changeID}
+                        placeholder="Código da O.S" className='form-control' />
                 </div>
                 <div className="col-sm-4 col-md-1 mt-2 ms-0 ps-0 d-flex justify-content-center align-self-end">
-                    <button type="button" className="btn btn-dark" data-bs-toggle="modal" data-bs-target="#orderModal">
+                    <button type="button" title='Buscar O.S' className="btn btn-dark" data-bs-toggle="modal" data-bs-target="#orderModal">
                         <FontAwesomeIcon icon={faMagnifyingGlass} />
                     </button>
                     <div className="modal fade" id="orderModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -87,14 +95,12 @@ const OrderForm = function (props) {
 
                 <div className="col-sm-8 col-md-2 me-0 pe-0">
                     <label className="form-label">CPF do cliente:</label>
-                    <NumberFormat readOnly className='form-control' format="###.###.###-##"
-                        value={client.cpf} onChange={changeClient}
-                        placeholder="Informe o cliente" />
-                    {/* <input type="text" readOnly value={client.cpf} onChange={changeClient}
-                        placeholder="Informe o cliente" className='form-control' /> */}
+                    <NumberFormat disabled={true} className='form-control' format="###.###.###-##"
+                        value={client.cpf} type='text'
+                        placeholder="Cpf do cliente" />
                 </div>
                 <div className="col-sm-4 col-md-1 mt-2 ms-0 ps-0 d-flex justify-content-center align-self-end">
-                    <button type="button" className="btn btn-dark" data-bs-toggle="modal" data-bs-target="#clientModal">
+                    <button type="button" title='Buscar Cliente' className="btn btn-dark" data-bs-toggle="modal" data-bs-target="#clientModal">
                         <FontAwesomeIcon icon={faMagnifyingGlass} />
                     </button>
                     <div className="modal fade" id="clientModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -108,14 +114,14 @@ const OrderForm = function (props) {
                                     <div className="row">
                                         <div className="col-12">
                                             <label className="form-label">CPF:</label>
-                                            <input type="text" value={client.cpf} onChange={changeClient}
+                                            <input type="text" value={findCpf} onChange={handleFindCPFField}
                                                 placeholder="Informe o cpf do cliente..." className='form-control' />
                                         </div>
 
                                     </div>
                                 </div>
                                 <div className="modal-footer">
-                                    <button type="button" onClick={() => searchClientByCpf(client.cpf)} className="btn btn-primary">Pesquisar</button>
+                                    <button type="button" onClick={() => searchClientByCpf(findCpf)} className="btn btn-primary">Pesquisar</button>
                                     <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 </div>
                             </div>
@@ -124,23 +130,23 @@ const OrderForm = function (props) {
                 </div>
                 <div className='col-md-6'>
                     <label className="form-label">Nome do Cliente:</label>
-                    <input type="text" className='form-control' readOnly value={client.name} />
+                    <input type="text" placeholder='Nome do Cliente' className='form-control' readOnly value={client.name} />
                 </div>
                 <div className="col-sm-12 mt-2 col-md-10">
                     <label className="form-label">Equipamento:</label>
                     <input type="text" value={equipment} onChange={changeEquipment}
-                        placeholder="Informe o Nome" className='form-control' />
+                        placeholder="Informe as caracteristicas do equipamento" className='form-control' />
                 </div>
                 <div className="col-sm-12 col-md-6 mt-2">
                     <label className="form-label">Defeito:</label>
                     <textarea type="text" value={difect} onChange={changeDifect}
-                        placeholder="Informe o E-mail" className='form-control' />
+                        placeholder="Informe o Defeito" className='form-control' />
                 </div>
 
                 <div className="col-sm-12 col-md-6 mt-2">
                     <label className="form-label">Serviço/Solução:</label>
                     <textarea type="text" value={service} onChange={changeService}
-                        placeholder="Informe o E-mail" className='form-control' />
+                        placeholder="Informe a solução encontrada" className='form-control' />
                 </div>
                 <div></div>
                 <div className="col-md-3 mt-2">
@@ -158,8 +164,6 @@ const OrderForm = function (props) {
                         decimalScale={2} allowNegative={false}
                         value={price} onChange={changePrice}
                         placeholder="Informe o Preço" />
-                    {/* <input type="text" value={price} onChange={changePrice}
-                        placeholder="Informe o Preço" className='form-control' /> */}
                 </div>
                 <div className="col-md-12 mt-3">
                     {
@@ -199,7 +203,8 @@ function mapDispatchToProps(dispatch) {
         update,
         searchByID,
         searchClientByCpf,
-        changeClient
+        changeClient,
+        changeCPFClient
     }, dispatch);
 }
 

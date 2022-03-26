@@ -47,9 +47,11 @@ export default function (state = initialState, action) {
         case 'PRICE_CHANGED':
             return { ...state, price: payload }
         case 'SITUATION_CHANGED':
-            return { ...state, situation: payload }
+            return { ...state, situation: { id: parseInt(payload) } }
         case 'CLIENT_CHANGED':
             return { ...state, client: payload }
+        case 'CPF_CLIENT_CHANGED':
+            return { ...state, client: { cpf: payload } }
         case 'PAGE_CHANGED':
             return { ...state, page: payload }
         case 'LIST_CHANGED':

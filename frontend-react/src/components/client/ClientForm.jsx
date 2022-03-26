@@ -47,8 +47,6 @@ const ClientForm = function (props) {
                     <NumberFormat className='form-control' format="###.###.###-##"
                         value={cpf} onChange={changeCPF} placeholder="Informe o CPF" />
 
-                    {/* <input type="text" value={cpf} onChange={changeCPF}
-                        placeholder="Informe o CPF" className='form-control' /> */}
                 </div>
                 <div className="col-sm-4 col-md-1 ms-0 ps-0 d-flex justify-content-center align-self-end">
                     <IconButton btnStyle="dark" onClick={() => searchByCPF(cpf)}
@@ -57,11 +55,9 @@ const ClientForm = function (props) {
                 </div>
                 <div className="col-md-3">
                     <label className="form-label">Whatsapp:</label>
-                    <NumberFormat className='form-control' format="(##) # ####-####" mask="_"
+                    <NumberFormat className='form-control' format="(##) #####-####" mask="_"
                         value={whatsapp} onChange={changeWHATSAPP} placeholder="Informe o Whatsapp" />
 
-                    {/* <input type="text" value={whatsapp} onChange={changeWHATSAPP}
-                        placeholder="Informe o número Whatsapp" className='form-control' /> */}
                 </div>
                 <div className="col-md-12 mt-3">
                     {

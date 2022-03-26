@@ -24,7 +24,7 @@ const Home = function (props) {
                     <Card icon={faUsers} title="Usuários" />
                 </Link>
                 <Link to={admin ? `/situations` : '#'} className={!admin ? 'admin-link' : ''}>
-                    <Card icon={faCodeMerge} title="Estados" />
+                    <Card icon={faCodeMerge} title="Status" />
                 </Link>
                 <Link to='/orders'>
                     <Card icon={faClipboardList} title="Ordens" />

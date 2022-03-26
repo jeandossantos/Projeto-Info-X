@@ -32,17 +32,18 @@ export class UpdateUserService {
                 whatsapp,
                 admin
             });
+        } else {
+            user = repository.create({
+                id,
+                name,
+                email,
+                password: newPassword,
+                cpf,
+                whatsapp,
+                admin
+            });
         }
 
-        user = repository.create({
-            id,
-            name,
-            email,
-            password: newPassword,
-            cpf,
-            whatsapp,
-            admin
-        });
 
         await repository.save(user);
     }

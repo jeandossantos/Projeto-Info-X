@@ -13,7 +13,8 @@ function SituationForm(props) {
                     <input type="text" value={name} onChange={changeName}
                         placeholder="Informe o Nome" className='form-control' />
                 </div>
-                <div className="col-md-12 mt-3">
+                <div className="col-md-6 col-sm-12">
+                    <label className="form-label d-block">&nbsp;</label>
                     {
 
                         !id
@@ -26,20 +27,6 @@ function SituationForm(props) {
                 </div>
             </div>
             <hr />
-            <table className="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Nome</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
 
     )
